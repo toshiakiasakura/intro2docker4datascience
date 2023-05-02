@@ -1,0 +1,14 @@
+version: "3"
+services:
+  lab:
+    container_name: intro2docker_pymc4
+
+    build:
+        context: .
+        dockerfile: ./Dockerfile
+
+    ports:
+      - "8888:8888"
+
+    volumes:
+      - .:/home/jovyan/workspace

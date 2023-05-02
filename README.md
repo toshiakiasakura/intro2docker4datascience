@@ -8,8 +8,6 @@ OS-level virtualization to deliver software in packages called containers.
 In short, docker can froozen your analytical environment including 
 programming lauguage (R, Python or Julia) and packages. 
 
-
-
 ## Quickstart.
 Move to `src_quickstart` and type `docker compose up`. 
 
@@ -17,7 +15,6 @@ Copy and paste url or Ctl + click url, and you can access Jupyter Lab
 with R, Python, Julia environemtns.  
 Url is like 
 `http://localhost:8888/?token=123456789123456789123456789123456789`
-
 
 ## Basic flow of Docker. 
 In docker system, you frequently manage images and containers. 
@@ -94,6 +91,13 @@ meaning that each docker engines run the process containing
 files in the general Linux OS system.  
 You can escape from the container by `Ctrl + D`.
 
+## Volume setting.
+If you want to share the local directries with Docker container, 
+you have to use volumes appropriately.   
+In the `src_quickstart`, we share the local directry `.` with `workdir`.
+In the `Dockerfile`, you create and move to `workdir` by the command `WORKDIR /workdir`, 
+which enables you to first see the local content in the directry.
+
 ## Frequently used commands.
 
 - `docker compose up`: Highly automated process from creating images 
@@ -109,10 +113,10 @@ create a new docker image.
 - `docker container exec -it <container_name> bash`: Enter the container in bash.
 
 ## Practical usage.
-- Python packages
-- R packages
-- Julia packages
-- PyMC4
+- [Python packages](./src_Python_example/README.md)
+- [R packages](./src_R_example/README.md)
+- [Julia packages](./src_Julia_example/README.md)
+- [PyMC4](./src_pymc4/README.md)
 - [Webdav for zotero](./src_zotero/README.md)
 
 ## Searching tips for effectively using Docker.
@@ -124,6 +128,16 @@ The diagram in the "Image Relationships" section depicts the build dependency tr
 the core images. 
 
 For R users, the rocker project is one option.
+
+## Where is docker image stored? 
+Type `docker info` and see the information related docker. 
+You can find directory storing image in the line `Docker Root Dir`, 
+so specifically type `docker info | grep "Docker Root Dir"`.   
+If you are a linux user, you can check disk size docker is using by "Disk Usage Analyzer". 
+You need a sudo permission to investigate docker file structure.
+Launch the "Disk Usage Analyzer" by `sudo baobab`.
+
+Or if you want to quickly check the directory size, use `sudo du -hs /var/lib/docker` for example.
 
 
 ## What is a difference between Docker and Virtual Machine. 

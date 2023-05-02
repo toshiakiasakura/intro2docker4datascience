@@ -1,0 +1,16 @@
+version: "3"
+services:
+  lab:
+    container_name: intro2docker_R_example
+    build:
+        context: .
+        dockerfile: ./Dockerfile
+    ports:
+      - "8888:8888"
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    volumes:
+      - .:/workdir
+    command: start.sh jupyter lab
+
+
